@@ -21,7 +21,7 @@ namespace Persistence
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
             // A connection string, is just created a new database with PgAdmin
-            string conn = "Host=localhost;Database=web_scraper;Username=postgres;Password=pass";
+            string conn = "Host=localhost;Database=SMTR;Username=postgres;Password=pass";
             
             // This tells .NET what provider to use
             options.UseNpgsql(conn);
