@@ -17,6 +17,7 @@ export const RestaurantList: React.FC<IProps> = ({ restaurants }) => {
 						<Item.Content>
 							<Item.Header as='a'>{restaurant.title}</Item.Header>
 							<Item.Meta>{restaurant.address}</Item.Meta>
+							<Item.Meta>{restaurant.postcode}</Item.Meta>
 							<Item.Description>
 								<div>
 									<Icon color='yellow' name='star'/> {restaurant.rating}
@@ -24,6 +25,7 @@ export const RestaurantList: React.FC<IProps> = ({ restaurants }) => {
 								<Icon color='black' name='write'/>{restaurant.reviews}
 								<div>{restaurant.price}</div>
 								<div>{restaurant.information}</div>
+								<div>{restaurant.summary}</div>
 							</Item.Description>
 							<Item.Extra>
 								<Label basic content={restaurant.category} />

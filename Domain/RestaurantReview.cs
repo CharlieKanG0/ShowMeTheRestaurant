@@ -15,6 +15,7 @@ namespace Domain
 		public string price { get; set; }
 		public string category { get; set; }
 		public string information { get; set; }
+		public string Summary { get; set; }
 		public string address { get; set; }
 		public string postcode { get; set; }
 		public string website { get; set; }

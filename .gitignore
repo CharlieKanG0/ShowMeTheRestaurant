@@ -3,3 +3,14 @@ obj
 .vscode
 .DS_Store
 appsettings.json
+
+node_modules/
+.vs/
+build/
+
+# VS Code
+*.code-workspace
+**/.vscode/
+
+# Rider
+.idea/

@@ -5,6 +5,7 @@ export interface IRestaurant {
 	price: string; 
 	category: string;
 	information: string;
+	summary: string;
 	address: string;
 	postcode: string;
 	website: string;
