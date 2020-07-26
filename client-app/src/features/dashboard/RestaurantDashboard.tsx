@@ -2,9 +2,10 @@ import React from 'react'
 import { Grid, List } from 'semantic-ui-react'
 import { IRestaurant } from '../../app/models/restaurant'
 import { RestaurantList } from './RestaurantList'
+import { SearchResponse } from '../../app/models/SearchResponse'
 
 interface IProps {
-	restaurants: IRestaurant[]
+	restaurants: SearchResponse
 }
 
 export const RestaurantDashboard: React.FC<IProps> = ({restaurants}) => {

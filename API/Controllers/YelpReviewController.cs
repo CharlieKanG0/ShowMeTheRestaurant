@@ -18,7 +18,7 @@ namespace API.Controllers
 	[Route("/YelpReview")]
 	public class YelpReviewController : ControllerBase
 	{
-		private readonly ILogger<GoogleReviewController> _logger;
+		private readonly ILogger<YelpReviewController> _logger;
 		private readonly DataContext _context;
 
 		public YelpReviewController(DataContext context)
@@ -26,17 +26,13 @@ namespace API.Controllers
 			_context = context;
 		}
 
-		// public GoogleReviewController(ILogger<GoogleReviewController> logger)
-		// {
-		//     _logger = logger;
-		// }
-
 		[HttpGet]
-		[Route("yelp")]
-		private async Task<SearchResponse> getYelpAsync()
+		[Route("yelp-search")]
+		public async Task<SearchResponse> GetYelpSearchResponseAsync()
 		{
 			var client = new Yelp.Api.Client("GVKXH8oERX1d4aExWnmvwq-7pD7JOfr5ccdpWO3FTfQXNXwp2E0zM0vNNs9oKwtHU2Kv9P0bhdHqzF4ycDRMcSjgEh-h1VGtCDvzqlqunHrv5vP-iHUyV5XrpkIMX3Yx");
 			var results = await client.SearchBusinessesAllAsync("cupcakes", 37.786882, -122.399972);
+			
 			return results;
 		}
 	}
