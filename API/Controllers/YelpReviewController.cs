@@ -20,19 +20,36 @@ namespace API.Controllers
 	{
 		private readonly ILogger<YelpReviewController> _logger;
 		private readonly DataContext _context;
+		private readonly string _apiKey; 
 
 		public YelpReviewController(DataContext context)
 		{
 			_context = context;
+			_apiKey =
+				"GVKXH8oERX1d4aExWnmvwq-7pD7JOfr5ccdpWO3FTfQXNXwp2E0zM0vNNs9oKwtHU2Kv9P0bhdHqzF4ycDRMcSjgEh-h1VGtCDvzqlqunHrv5vP-iHUyV5XrpkIMX3Yx";
+		}
+		
+		public class SearchData {
+			public double Latitude { get; set; }
+			public double Longtitude { get; set; }
 		}
 
 		[HttpGet]
 		[Route("yelp-search")]
-		public async Task<SearchResponse> GetYelpSearchResponseAsync()
+		public async Task<SearchResponse> GetYelpSearchResponseAsync([FromQuery]SearchData searchData)
 		{
-			var client = new Yelp.Api.Client("GVKXH8oERX1d4aExWnmvwq-7pD7JOfr5ccdpWO3FTfQXNXwp2E0zM0vNNs9oKwtHU2Kv9P0bhdHqzF4ycDRMcSjgEh-h1VGtCDvzqlqunHrv5vP-iHUyV5XrpkIMX3Yx");
-			var results = await client.SearchBusinessesAllAsync("cupcakes", 37.786882, -122.399972);
-			
+			var request = new Yelp.Api.Models.SearchRequest
+			{
+				Latitude = searchData.Latitude,
+				Longitude = searchData.Longtitude,
+				Term = "restaurants",
+				MaxResults = 40,
+				OpenNow = true
+			};
+
+			var client = new Yelp.Api.Client(_apiKey);
+			var results = await client.SearchBusinessesAllAsync(request);
+
 			return results;
 		}
 	}
