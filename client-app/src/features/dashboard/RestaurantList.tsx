@@ -18,19 +18,23 @@ export const RestaurantList: React.FC<IProps> = ({ restaurants }) => {
 
 						<Item.Content>
 							<Item.Header as='a'>{restaurant.name}</Item.Header>
-							<Item.Meta>{restaurant.categories[0].title}</Item.Meta>
-							<Item.Meta>{restaurant.categories[0].alias}</Item.Meta>
+							<Item.Meta>{restaurant.location.address1}</Item.Meta>
+							<Item.Meta>{restaurant.location.postalCode}</Item.Meta>
+							{/* {restaurant.categories.map((category) => (
+								<Item.Meta>{category.title}</Item.Meta>
+							))} */}
 							<Item.Description>
 								<div>
 									<Icon color='yellow' name='star'/> {restaurant.rating}
 								</div>
-								<Icon color='black' name='write'/>{restaurant.rating}
+								<Icon color='black' name='write'/>{restaurant.reviewCount}
 								<div>{restaurant.price}</div>
-								<div>{restaurant.rating}</div>
 								<div>{restaurant.phone}</div>
 							</Item.Description>
 							<Item.Extra>
-								<Label basic content={restaurant.categories[0].title} />
+							{restaurant.categories.map((category) => (
+								<Label basic content={category.title} />
+							))}
 							</Item.Extra>
 						</Item.Content>
 					</Item>

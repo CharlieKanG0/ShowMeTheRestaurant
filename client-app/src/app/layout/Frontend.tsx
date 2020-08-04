@@ -7,6 +7,7 @@ import { RestaurantDashboard } from '../../features/dashboard/RestaurantDashboar
 // import { RouteComponentProps, Redirect} from "react-router";
 import { Switch, Route, RouteComponentProps, Redirect } from 'react-router-dom';
 import HomePage from '../../pages/HomePage';
+import { geolocated } from "react-geolocated";
 
 export default class Frontend extends React.Component<RouteComponentProps> {
 

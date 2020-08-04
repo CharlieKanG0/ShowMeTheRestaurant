@@ -7,27 +7,25 @@ import { RestaurantDashboard } from '../features/dashboard/RestaurantDashboard';
 // import { RouteComponentProps, Redirect} from "react-router";
 import { BrowserRouter, Switch, Route, RouteComponentProps } from 'react-router-dom';
 import { SearchResponse } from '../app/models/SearchResponse';
+import { GeolocatedProps, geolocated } from "react-geolocated";
 
-export default function HomePage() {
-	// const [restaurants, setRestaurants] = useState<IRestaurant[]>([])
+const HomePage: React.FC<GeolocatedProps> = ({ coords }) => {
 
-	// useEffect(() => {
-	// 	axios.get<IRestaurant[]>('https://localhost:5001/GoogleReview/database')
-	// 		.then((response) => {
-	// 			setRestaurants(response.data)
-	// 		});
-	// }, []);
-
+	//const [coordinate, setCoordinate] = useState({...coords})
 	const [restaurants, setRestaurants] = useState();
 	const [load, setLoad] = useState(false);
 	const [error, setError] = useState('');
 
 	useEffect(() => {
-		axios.get('https://localhost:5001/YelpReview/yelp-search')
-			.then((response) => {
-				setRestaurants(response.data);
-				setLoad(true);
-			})
+		axios.get('https://localhost:5001/YelpReview/yelp-search', {
+			params: {
+				latitude: coords?.latitude || -27.46,
+				longtitude: coords?.longitude || 153.05
+			}
+		}).then((response) => {
+			setRestaurants(response.data);
+			setLoad(true);
+		})
 			.catch(err => {
 				setError(err.message);
 				setLoad(true);
@@ -46,13 +44,20 @@ export default function HomePage() {
 		);
 	} else {
 		return (
-            <div>
-                Loading...
-            </div>
-        );
+			<div>
+				latitude: {coords?.latitude}
+				longtitude: {coords?.longitude}
+			</div>
+		);
 	}
 
-
 }
+
+export default geolocated({
+	positionOptions: {
+		enableHighAccuracy: false,
+	},
+	userDecisionTimeout: 5000,
+})(HomePage);
 
 //export default HomePage;
