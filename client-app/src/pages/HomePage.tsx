@@ -55,7 +55,7 @@ const HomePage: React.FC<GeolocatedProps> = ({ coords }) => {
 
 export default geolocated({
 	positionOptions: {
-		enableHighAccuracy: false,
+		enableHighAccuracy: true,
 	},
 	userDecisionTimeout: 5000,
 })(HomePage);
