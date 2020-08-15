@@ -8,56 +8,23 @@ import { RestaurantDashboard } from '../features/dashboard/RestaurantDashboard';
 import { BrowserRouter, Switch, Route, RouteComponentProps } from 'react-router-dom';
 import { SearchResponse } from '../app/models/SearchResponse';
 import { GeolocatedProps, geolocated } from "react-geolocated";
+import { SelectCategories } from '../features/dashboard/SelectCategories';
 
-const HomePage: React.FC<GeolocatedProps> = ({ coords }) => {
+const HomePage: React.FC<RouteComponentProps> = (props: RouteComponentProps) => {
 
-	//const [coordinate, setCoordinate] = useState({...coords})
-	const [restaurants, setRestaurants] = useState();
-	const [load, setLoad] = useState(false);
-	const [error, setError] = useState('');
+	const {
+		history, location, match, staticContext,
+	} = props; 
 
-	useEffect(() => {
-		axios.get('https://localhost:5001/YelpReview/yelp-search', {
-			params: {
-				latitude: coords?.latitude || -27.46,
-				longtitude: coords?.longitude || 153.05
-			}
-		}).then((response) => {
-			setRestaurants(response.data);
-			setLoad(true);
-		})
-			.catch(err => {
-				setError(err.message);
-				setLoad(true);
-			});
-	}, []);
-
-	if (load) {
-		return (
-			<div>
-				<NavBar />
-				<Container style={{ marginTop: '7em' }}>
-					{error ? <div>{error}</div> :
-						<RestaurantDashboard restaurants={restaurants!} />}
-				</Container>
-			</div>
-		);
-	} else {
-		return (
-			<div>
-				latitude: {coords?.latitude}
-				longtitude: {coords?.longitude}
-			</div>
-		);
-	}
+	return (
+		<div>
+			<NavBar />
+			<Container style={{ marginTop: '7em' }}>
+				<SelectCategories {...props}/>
+			</Container>
+		</div>
+	);
 
 }
 
-export default geolocated({
-	positionOptions: {
-		enableHighAccuracy: true,
-	},
-	userDecisionTimeout: 5000,
-})(HomePage);
-
-//export default HomePage;
+export default HomePage;

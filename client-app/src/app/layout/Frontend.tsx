@@ -8,6 +8,7 @@ import { RestaurantDashboard } from '../../features/dashboard/RestaurantDashboar
 import { Switch, Route, RouteComponentProps, Redirect } from 'react-router-dom';
 import HomePage from '../../pages/HomePage';
 import { geolocated } from "react-geolocated";
+import SearchPage from '../../pages/SearchPage';
 
 export default class Frontend extends React.Component<RouteComponentProps> {
 
@@ -16,8 +17,9 @@ export default class Frontend extends React.Component<RouteComponentProps> {
 		return (
 			<>
 				<Switch>
-					<Redirect exact={true} from={`/`} to={`${path}/home`} />
-					<Route path="/home" component={HomePage} />
+					{/* <Redirect exact={true} from={`/`} to={`${path}/home`} /> */}
+					<Route exact={true} path='/' component={HomePage} />
+					<Route path="/search" component={SearchPage} />
 				</Switch>
 			</>
 		);

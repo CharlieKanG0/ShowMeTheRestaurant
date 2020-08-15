@@ -32,6 +32,7 @@ namespace API.Controllers
 		public class SearchData {
 			public double Latitude { get; set; }
 			public double Longtitude { get; set; }
+			public string Categories { get; set; }
 		}
 
 		[HttpGet]
@@ -42,6 +43,7 @@ namespace API.Controllers
 			{
 				Latitude = searchData.Latitude,
 				Longitude = searchData.Longtitude,
+				Categories = searchData.Categories,
 				Term = "restaurants",
 				MaxResults = 40,
 				OpenNow = true
