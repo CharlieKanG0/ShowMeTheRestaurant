@@ -12,7 +12,7 @@ import { SelectCategories } from '../features/dashboard/SelectCategories';
 
 const HomePage: React.FC<GeolocatedProps> = ({ coords }) => {
 
-	const location = useLocation(); 
+	let location = useLocation();
 
 	//const [coordinate, setCoordinate] = useState({...coords})
 	const [restaurants, setRestaurants] = useState();
@@ -33,7 +33,7 @@ const HomePage: React.FC<GeolocatedProps> = ({ coords }) => {
 				setError(err.message);
 				setLoad(true);
 			});
-	}, [location]);
+	}, []);
 
 	if (load) {
 		return (

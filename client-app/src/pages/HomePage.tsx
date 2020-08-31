@@ -20,7 +20,7 @@ const HomePage: React.FC<RouteComponentProps> = (props: RouteComponentProps) => 
 		<div>
 			<NavBar />
 			<Container style={{ marginTop: '7em' }}>
-				<SelectCategories {...props}/>
+				<SelectCategories />
 			</Container>
 		</div>
 	);

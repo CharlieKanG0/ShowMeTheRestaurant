@@ -4,14 +4,16 @@ import { Button } from 'semantic-ui-react'
 import { IRestaurant } from '../../app/models/restaurant'
 import { RestaurantList } from './RestaurantList'
 import { SearchResponse } from '../../app/models/SearchResponse'
-import { Router, RouteComponentProps } from 'react-router'
+import { Router, RouteComponentProps, useHistory } from 'react-router'
 
 interface ICategories {
 	region: string;
 	cousines: string[];
 }
 
-export const SelectCategories: React.FC<RouteComponentProps> = (props: RouteComponentProps) => {
+export const SelectCategories: React.FC = () => {
+
+	let history = useHistory(); 
 
 	let restaurantCategories: ICategories[] = [
 		{ region: 'Western', cousines: ['american', 'australian', 'barbeque'] },
@@ -24,10 +26,16 @@ export const SelectCategories: React.FC<RouteComponentProps> = (props: RouteComp
 
 	function getSelectedCategories(category: ICategories) {
 		selectedCategories = category.cousines.join(",");
-		props.history.push({
+		// props.history.push({
+		// 	pathname: '/search', 
+		// 	state: {categories: selectedCategories} 
+		// })
+
+		history.push({
 			pathname: '/search', 
-			state: {categories: selectedCategories} 
+			state: { categories: selectedCategories } 
 		})
+
 	}
 
 	return (
@@ -48,3 +56,5 @@ export const SelectCategories: React.FC<RouteComponentProps> = (props: RouteComp
 		</>
 	)
 }
+
+//export default SelectCategories; 
