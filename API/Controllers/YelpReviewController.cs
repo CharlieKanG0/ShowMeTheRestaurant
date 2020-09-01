@@ -33,6 +33,7 @@ namespace API.Controllers
 			public double Latitude { get; set; }
 			public double Longtitude { get; set; }
 			public string Categories { get; set; }
+			public string? Location { get; set; }
 		}
 
 		[HttpGet]
@@ -41,10 +42,11 @@ namespace API.Controllers
 		{
 			var request = new Yelp.Api.Models.SearchRequest
 			{
+				Location = searchData.Location,
 				Latitude = searchData.Latitude,
 				Longitude = searchData.Longtitude,
 				Categories = searchData.Categories,
-				Term = "restaurants",
+				//Term = "restaurants", - optional
 				MaxResults = 40,
 				OpenNow = true
 			};

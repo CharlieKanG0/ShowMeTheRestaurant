@@ -26,10 +26,6 @@ export const SelectCategories: React.FC = () => {
 
 	function getSelectedCategories(category: ICategories) {
 		selectedCategories = category.cousines.join(",");
-		// props.history.push({
-		// 	pathname: '/search', 
-		// 	state: {categories: selectedCategories} 
-		// })
 
 		history.push({
 			pathname: '/search', 
